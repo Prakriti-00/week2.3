@@ -1,1 +1,29 @@
 
+name: Cache Dependencies Workflow
+
+on:
+  workflow_dispatch:  # allows manual run
+  push:               # runs on push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: cache-a4e87f2
+          restore-keys: cache-a4e87f2
+
+      - name: Prime cache-a4e87f2
+        run: |
+          if [ -f ~/.cache/pip ]; then
+            echo "Cache hit!"
+          else
+            echo "Cache miss!"
+          fi
