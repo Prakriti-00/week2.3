@@ -1,8 +1,7 @@
-
 name: Cache Dependencies Workflow
 
 on:
-  workflow_dispatch:  # allows manual run
+  workflow_dispatch:  # manual run
   push:               # runs on push
 
 jobs:
@@ -20,10 +19,10 @@ jobs:
           key: cache-a4e87f2
           restore-keys: cache-a4e87f2
 
-      - name: Prime cache-a4e87f2
+      - name: prime-cache-a4e87f2
         run: |
-          if [ -f ~/.cache/pip ]; then
-            echo "Cache hit!"
+          if [ -d ~/.cache/pip ]; then
+            echo "Cache hit or created!"
           else
             echo "Cache miss!"
           fi
