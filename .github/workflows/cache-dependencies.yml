@@ -21,7 +21,9 @@ jobs:
 
       - name: prime-cache-a4e87f2
         run: |
-          if [ -d ~/.cache/pip ]; then
+          mkdir -p ~/.cache/pip
+          echo "prime cache content" > ~/.cache/pip/dummy.txt
+          if [ -f ~/.cache/pip/dummy.txt ]; then
             echo "Cache hit or created!"
           else
             echo "Cache miss!"
